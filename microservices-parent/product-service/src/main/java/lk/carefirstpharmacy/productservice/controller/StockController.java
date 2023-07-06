@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import jakarta.websocket.server.PathParam;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -26,6 +27,9 @@ public class StockController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Product createStock(@RequestBody Stock stockreq) {
+
+        stockreq.setSold(BigDecimal.valueOf(0));
+        stockreq.setRemaining(stockreq.getQty());
         return productService.addStock(stockreq);
     }
 

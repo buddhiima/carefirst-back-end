@@ -19,4 +19,5 @@ public class ProductRequest {
     private BigDecimal price;
     private Boolean prescription_drug;
     private String imageURL;
+    private Boolean isDeleted;
 }

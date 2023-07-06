@@ -29,6 +29,7 @@ public class ProductService {
                 .price(productRequest.getPrice())
                 .prescription_drug(productRequest.getPrescription_drug())
                 .imageURL(productRequest.getImageURL())
+                .isDeleted(productRequest.getIsDeleted())
                 .build();
 
         productRepository.save(product);
@@ -51,6 +52,7 @@ public class ProductService {
                 .price(product.getPrice())
                 .prescription_drug(product.getPrescription_drug())
                 .imageURL(product.getImageURL())
+                .isDeleted(product.getIsDeleted())
                 .build();
     }
 
@@ -97,6 +99,8 @@ public class ProductService {
                 .menufacturedate(stockreq.getMenufacturedate())
                 .price(stockreq.getPrice())
                 .qty(stockreq.getQty())
+                .sold(stockreq.getSold())
+                .remaining(stockreq.getRemaining())
                 .reason("")
                 .build());
         product.setStock(stocks);

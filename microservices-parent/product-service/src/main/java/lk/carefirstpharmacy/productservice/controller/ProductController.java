@@ -27,7 +27,9 @@ public class ProductController {
         String convertedImageURL1 = imageURL.replace("https://drive.google.com/file/d/", "https://drive.google.com/uc?export=view&id=");
         String convertedImageURL2 = convertedImageURL1.replace("/view?usp=drive_link", "");
         System.out.println("convertedImageURL2 "+convertedImageURL2);
+
         productRequest.setImageURL(convertedImageURL2);
+        productRequest.setIsDeleted(false);
 
         productService.createProduct(productRequest);
     }

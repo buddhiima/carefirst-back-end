@@ -28,6 +28,8 @@ public class Stock {
     private Boolean isDeleted;
     private BigDecimal qty;
     private String reason;
+    private BigDecimal sold;
+    private BigDecimal remaining;
 
     public Stock() {
         // id = new ObjectId().toString();
