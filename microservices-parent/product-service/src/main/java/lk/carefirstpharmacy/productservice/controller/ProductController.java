@@ -6,7 +6,6 @@ import lk.carefirstpharmacy.productservice.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -19,7 +18,16 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createProduct(@RequestBody ProductRequest productRequest) {
+    public void createProduct(ProductRequest productRequest) {
+        System.out.println("productRequest "+productRequest);
+
+        // generating a shareable google drive link to image
+        String imageURL = productRequest.getImageURL();
+        String convertedImageURL1 = imageURL.replace("https://drive.google.com/file/d/", "https://drive.google.com/uc?export=view&id=");
+        String convertedImageURL2 = convertedImageURL1.replace("/view?usp=drive_link", "");
+        System.out.println("convertedImageURL2 "+convertedImageURL2);
+        productRequest.setImageURL(convertedImageURL2);
+
         productService.createProduct(productRequest);
     }
 
@@ -29,4 +37,5 @@ public class ProductController {
     public List<ProductResponse> GetAllProducts() {
         return productService.getAllProducts();
     }
+
 }

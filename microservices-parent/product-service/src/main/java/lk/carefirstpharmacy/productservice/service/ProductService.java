@@ -25,6 +25,7 @@ public class ProductService {
                 .description(productRequest.getDescription())
                 .price(productRequest.getPrice())
                 .prescription_drug(productRequest.getPrescription_drug())
+                .imageURL(productRequest.getImageURL())
                 .build();
 
         productRepository.save(product);
@@ -46,6 +47,7 @@ public class ProductService {
                 .description(product.getDescription())
                 .price(product.getPrice())
                 .prescription_drug(product.getPrescription_drug())
+                .imageURL(product.getImageURL())
                 .build();
     }
 }
