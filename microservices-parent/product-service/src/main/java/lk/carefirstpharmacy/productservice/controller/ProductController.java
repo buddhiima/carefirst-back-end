@@ -2,6 +2,7 @@ package lk.carefirstpharmacy.productservice.controller;
 
 import lk.carefirstpharmacy.productservice.dto.ProductRequest;
 import lk.carefirstpharmacy.productservice.dto.ProductResponse;
+import lk.carefirstpharmacy.productservice.model.Product;
 import lk.carefirstpharmacy.productservice.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -31,6 +32,23 @@ public class ProductController {
         productService.createProduct(productRequest);
     }
 
+    // [waruna start]
+    @PutMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public Product updateProduct(@RequestBody Product productRequest) {
+        return productService.updateProduct(productRequest);
+    }
+
+    @DeleteMapping("/delete/{delete}")
+    @ResponseStatus(HttpStatus.OK)
+    public void setDeleteState(@RequestBody List<String> ids, @PathVariable("delete") int delete) {
+
+        System.out.println("Received data: " + ids);
+
+        System.out.println("Received path variable: " + delete);
+        productService.setDeleteProducts(ids, delete == 1 ? true : false);
+    }
+    // [waruna end]
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
