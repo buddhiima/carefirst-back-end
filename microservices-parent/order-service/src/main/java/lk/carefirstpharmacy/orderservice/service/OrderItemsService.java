@@ -29,6 +29,7 @@ public class OrderItemsService {
         orderItems.add(OrderItems.builder()
                 .id(orderItemRequest.getId())
                 .productID(orderItemRequest.getProductID())
+                .name(orderItemRequest.getName())
                 .qty(orderItemRequest.getQty())
                 .unit_price(orderItemRequest.getUnit_price())
                 .total(orderItemRequest.getTotal())
