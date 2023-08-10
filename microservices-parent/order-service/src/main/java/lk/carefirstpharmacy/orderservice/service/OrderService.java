@@ -20,7 +20,7 @@ public class OrderService {
 
     private final OrderRepository orderRepository;
 
-    public void createOrder(OrderNewRequest orderNewRequest) {
+    public String createOrder(OrderNewRequest orderNewRequest) {
 
         // building the object of type Order
         Order order = Order.builder()
@@ -30,6 +30,8 @@ public class OrderService {
                 .build();
 
         orderRepository.save(order);
+
+        return order.getOrderID();
     }
 
     public void placeOrder(Order order) {
@@ -78,5 +80,12 @@ public class OrderService {
                 .items(order.getItems())
                 .customerID(order.getCustomerID())
                 .build();
+    }
+
+    public Order findByStatusAndCustomerID(String status, String customerID) {
+        Order order = orderRepository.findByStatusAndCustomerID(status, customerID);
+
+        System.out.println("order "+order);
+        return order;
     }
 }

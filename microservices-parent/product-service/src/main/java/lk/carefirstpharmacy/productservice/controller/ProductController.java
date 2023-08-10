@@ -58,4 +58,11 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
+
+    @GetMapping("/activeproducts")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ProductResponse> findByIsDeletedIsFalse() {
+        return productService.findByIsDeletedIsFalse();
+    }
+
 }

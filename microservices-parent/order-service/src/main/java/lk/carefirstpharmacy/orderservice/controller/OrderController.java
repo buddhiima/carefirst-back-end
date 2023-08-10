@@ -22,12 +22,12 @@ public class OrderController {
 
     @PostMapping("/new")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createOrder(OrderNewRequest orderNewRequest) {
+    public String createOrder(OrderNewRequest orderNewRequest) {
 
         // setting the order status as created
-        orderNewRequest.setStatus("Created");
+        orderNewRequest.setStatus("created");
 
-        orderService.createOrder(orderNewRequest);
+        return orderService.createOrder(orderNewRequest);
     }
 
 
@@ -56,4 +56,9 @@ public class OrderController {
         return orderService.getOrders();
     }
 
+    @GetMapping("/{status}/{customerID}")
+    @ResponseStatus(HttpStatus.OK)
+    public Order findByStatusAndCustomerID(@PathVariable("status") String status, @PathVariable("customerID") String customerID) {
+        return orderService.findByStatusAndCustomerID(status, customerID);
+    }
 }

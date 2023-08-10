@@ -44,6 +44,19 @@ public class ProductService {
         return products.stream().map(this::mapToProductResponse).toList();
     }
 
+
+    public List<ProductResponse> findByIsDeletedIsFalse() {
+
+//        Query query = new Query();
+//        query.addCriteria(Criteria.where("isDeleted").is("false"));
+
+//        boolean deleted = isDeleted;
+        List<Product> products = productRepository.findByIsDeletedIsFalse();
+
+        // mapping Products class into ProductResponse class
+        return products.stream().map(this::mapToProductResponse).toList();
+    }
+
     private ProductResponse mapToProductResponse(Product product) {
         return ProductResponse.builder()
                 .id(product.getId())
